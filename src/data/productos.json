@@ -1,0 +1,49 @@
+[
+    {
+        "name": "Pizzas",
+        "productos": [
+            {
+                "size": "Chica",
+                "price": 80
+            },
+            {
+                "size": "Mediana",
+                "price": 80
+            },
+            {
+                "size": "Grande",
+                "price": 80
+            },
+            {
+                "size": "Extra Grande",
+                "price": "80"
+            },
+            {
+                "size": "Fiestera",
+                "price": "80"
+            }   
+        ],
+        "snacks": [
+            {
+                "name": "Papas",
+                "price": "60"
+            },
+            {
+                "name": "Bolas de Queso",
+                "price": "80"
+            }
+        ],
+        "refrescos": [
+            {
+                "brand": "Pepsi",
+                "name": "Pepsi",
+                "price": "20"
+            },
+            {
+                "brand": "Pepsi",
+                "name": "Mirinda",
+                "price": "20"
+            }
+        ]
+    }
+]
