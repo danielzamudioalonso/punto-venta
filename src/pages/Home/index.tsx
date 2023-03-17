@@ -20,11 +20,11 @@ const Home = () => {
                 <Basket size='large' />
                 <h1>Poductos</h1>
             </Card>
-            <Card>
+            <Card onClick={() => navigate('/clientes')}>
                 <User size='large' />
                 <h1>Clientes</h1>
             </Card>
-            <Card>
+            <Card onClick={() => navigate('/nuevo-producto')}>
                 <AddCircle size='large' />
                 <h1>Nuevo Producto</h1>
             </Card>
