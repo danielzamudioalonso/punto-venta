@@ -1,11 +1,39 @@
 import { Container } from "../Card"
 import { Table } from "./Table"
-import Clientes from '../../data/clientes.json'
 import { Cliente } from "../../interfaces/cliente.interface"
+import { useEffect, useState } from "react"
+import { getClients } from "../../api"
 
 const ClientesTab = () => {
+    const [clientes, setClientes] = useState<Array<Cliente>>()
+
+    useEffect(() => {
+        const getListClientes = async() => {
+            const response = await getClients()
+            setClientes(response.data)
+        }
+        getListClientes()
+    }, [])
+
+    const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+        const searchWord = e.currentTarget.value
+        if(clientes){
+            const newListClientes = clientes.filter((cliente: Cliente) => 
+                cliente.nombre.toLowerCase().includes(searchWord.toLowerCase())
+            )
+            setClientes(newListClientes)
+        }
+    }
+
     return(
         <Container>
+            <Container style={{ padding: '30px 0' }}>
+                <input 
+                    type="text"
+                    placeholder="Buscar Cliente"
+                    onChange={(e) => handleOnChange(e)}
+                />
+            </Container>
             <Table>
                 <thead>
                     <tr>
@@ -16,13 +44,14 @@ const ClientesTab = () => {
                 </thead>
                 <tbody>
                     {
-                        Clientes.map((cliente: Cliente) => (
-                            <tr key={cliente.nombre}>
-                                <th>{cliente.nombre}</th>
-                                <th>{cliente.direccion}</th>
-                                <th>{cliente.referencia}</th>
-                            </tr>
-                        ))
+                        clientes  &&
+                            clientes.map((cliente: Cliente) => (
+                                <tr key={cliente.nombre}>
+                                    <th>{cliente.nombre}</th>
+                                    <th>{cliente.direccion}</th>
+                                    <th>{cliente.referencia}</th>
+                                </tr>
+                            ))
                     }
                 </tbody>
             </Table>

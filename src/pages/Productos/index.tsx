@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Container } from '../../components/Card'
 import { MediumButton } from '../../components/Buttons/Buttons'
-import SnackTab from '../../components/Tables/SnackTab'
-import PizzaTab from '../../components/Tables/PizzaTab'
+import SnackTab from '../../components/Tables/SnacksTab'
+import PizzaTab from '../../components/Tables/PizzasTab'
 import styled from 'styled-components'
+import DrinksTab from '../../components/Tables/DrinksTab'
 
 const ContainerTabs = styled(Container)({
     backgroundColor: 'antiquewhite',
@@ -14,20 +15,21 @@ const ContainerTabs = styled(Container)({
 })
 
 const Productos = () => {
-    const [tabSnacks, setTabSnacks] = useState<boolean>(false)
+    const [tabActive, setTabActive] = useState<string>('pizzas')
     
     return(
         <Container>
             <ContainerTabs>
-                <MediumButton onClick={() => setTabSnacks(false)}>Pizzas</MediumButton>
-                <MediumButton onClick={() => setTabSnacks(true)}>Snacks</MediumButton>
+                <MediumButton onClick={() => setTabActive('pizzas')}>Pizzas</MediumButton>
+                <MediumButton onClick={() => setTabActive('snacks')}>Snacks</MediumButton>
+                <MediumButton onClick={() => setTabActive('drinks')}>Drinks</MediumButton>
             </ContainerTabs>
             <Container style={{ padding: '30px' }}>
                 {
-                    tabSnacks ?
-                        <SnackTab />
-                    : 
+                    tabActive === 'pizzas' ? 
                         <PizzaTab />
+                    : tabActive === 'snacks' ?
+                        <SnackTab /> : <DrinksTab />
                 }
             </Container>
         </Container>
