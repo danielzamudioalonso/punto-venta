@@ -1,5 +1,4 @@
 import { Container } from "../Card"
-import Snacks from '../../data/snacks.json'
 import { Snack } from "../../interfaces/snack.interface"
 import { Table } from "./Table"
 import { useEffect, useState } from "react"

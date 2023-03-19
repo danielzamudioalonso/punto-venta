@@ -2,7 +2,6 @@ import { useState } from "react"
 import styled from "styled-components"
 import { MediumButton } from "../../components/Buttons/Buttons"
 import { Container } from "../../components/Card"
-import Pizzas from '../../data/pizzas.json'
 
 const ContainerForm = styled(Container)({
     display: 'flex',
@@ -15,18 +14,6 @@ const NuevoProducto = () => {
     const [tamaño, setTamaño] = useState<string>('')
 
     const handleOnClick = async() => {
-        Pizzas.push({
-            'size': tamaño,
-            'price': precio
-        })
-        const newPizzas = JSON.stringify(Pizzas)
-        const file = new Blob([newPizzas], {type: 'application/json'})
-        const href = URL.createObjectURL(file)
-        const link = document.createElement('a')
-        link.download = 'nuevas.json'
-        link.href = href
-        link.click()
-        //new File([file], 'nuevasPizzas.json')
     }
 
     const handleOnChangeTamaño = (e: React.FormEvent<HTMLInputElement>) => {
