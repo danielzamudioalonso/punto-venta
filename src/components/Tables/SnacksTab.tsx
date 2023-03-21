@@ -1,8 +1,8 @@
-import { Container } from "../Card"
-import { Snack } from "../../interfaces/snack.interface"
-import { Table } from "./Table"
-import { useEffect, useState } from "react"
-import { getSnacks } from "../../api"
+import { Container } from '../Card'
+import { Snack } from '../../interfaces/snack.interface'
+import { Table } from './Table'
+import { useEffect, useState } from 'react'
+import { getSnacks } from '../../api'
 
 const SnacksTab = () => {
     const [snacks, setSnacks] = useState<Array<Snack>>()

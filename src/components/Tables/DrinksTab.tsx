@@ -1,9 +1,9 @@
-import { Container } from "../Card"
-import { Snack } from "../../interfaces/snack.interface"
-import { Table } from "./Table"
-import { useEffect, useState } from "react"
-import { getDrinks } from "../../api"
-import { Drink } from "../../interfaces/drink.interface"
+import { Container } from '../Card'
+import { Snack } from '../../interfaces/snack.interface'
+import { Table } from './Table'
+import { useEffect, useState } from 'react'
+import { getDrinks } from '../../api'
+import { Drink } from '../../interfaces/drink.interface'
 
 const DrinksTab = () => {
     const [drinks, setDrinks] = useState<Array<Drink>>()

@@ -1,5 +1,5 @@
-import { Container } from "../../components/Card"
-import ClientesTab from "../../components/Tables/ClientesTab"
+import { Container } from '../../components/Card'
+import ClientesTab from '../../components/Tables/ClientesTab'
 
 const Clientes = () => {
     return(

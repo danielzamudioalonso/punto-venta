@@ -1,12 +1,12 @@
-import { useState } from "react"
-import styled from "styled-components"
-import { postDrink, postPizza, postSnack } from "../../api/BM"
-import { MediumButton } from "../../components/Buttons/Buttons"
-import { Container } from "../../components/Card"
-import { Drink } from "../../interfaces/drink.interface"
-import { Pizza } from "../../interfaces/pizza.interface"
-import { Snack } from "../../interfaces/snack.interface"
-import { Input } from "./Inputs"
+import { useState } from 'react'
+import styled from 'styled-components'
+import { postDrink, postPizza, postSnack } from '../../api/BM'
+import { MediumButton } from '../../components/Buttons/Buttons'
+import { Container } from '../../components/Card'
+import { Drink } from '../../interfaces/drink.interface'
+import { Pizza } from '../../interfaces/pizza.interface'
+import { Snack } from '../../interfaces/snack.interface'
+import { Input } from './Inputs'
 
 const ContainerForm = styled(Container)({
     display: 'flex',
@@ -79,7 +79,7 @@ const NewProduct = ({ typeOfForm }: Props) => {
                 typeOfForm === 'pizza' &&
                     <Input 
                         type='text'
-                        placeholder="Tamaño"
+                        placeholder='Tamaño'
                         value={size}
                         onChange={(e) => handleOnChangeSize(e)}
                     />
@@ -88,14 +88,14 @@ const NewProduct = ({ typeOfForm }: Props) => {
                 (typeOfForm === 'snack' || typeOfForm === 'drink') &&
                     <Input 
                         type='text'
-                        placeholder="Nombre"
+                        placeholder='Nombre'
                         value={name}
                         onChange={(e) => handleOnChangeName(e)}
                     />
             }
             <Input 
                 type='number'
-                placeholder="Precio"
+                placeholder='Precio'
                 value={price}
                 onChange={(e) => handleOnChangePrecio(e)}
             />
@@ -103,7 +103,7 @@ const NewProduct = ({ typeOfForm }: Props) => {
                 typeOfForm === 'drink' &&
                     <Input 
                         type='text'
-                        placeholder="Marca"
+                        placeholder='Marca'
                         value={brand}
                         onChange={(e) => handleOnChangeBrand(e)}
                     />

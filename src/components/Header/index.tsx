@@ -22,7 +22,7 @@ const Header = () => {
     
     return(
         <CustomHeader >
-            <img src="https://i.pinimg.com/originals/e5/86/37/e5863725548e750c121f4ff1171e163d.png" />
+            <img src='https://i.pinimg.com/originals/e5/86/37/e5863725548e750c121f4ff1171e163d.png' />
             <BackButton onClick={() => navigate(-1)}>
                 <FormPreviousLink />
                 Atras

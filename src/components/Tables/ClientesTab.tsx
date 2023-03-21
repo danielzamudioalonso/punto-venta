@@ -1,9 +1,9 @@
-import { Container } from "../Card"
-import { Table } from "./Table"
-import { Cliente } from "../../interfaces/cliente.interface"
-import { useEffect, useState } from "react"
-import { getClients } from "../../api"
-import { Input } from "../Forms/Inputs"
+import { Container } from '../Card'
+import { Table } from './Table'
+import { Cliente } from '../../interfaces/cliente.interface'
+import { useEffect, useState } from 'react'
+import { getClients } from '../../api'
+import { Input } from '../Forms/Inputs'
 
 const ClientesTab = () => {
     const [clientes, setClientes] = useState<Array<Cliente>>()
@@ -33,8 +33,8 @@ const ClientesTab = () => {
         <Container>
             <Container style={{ padding: '30px 0' }}>
                 <Input 
-                    type="text"
-                    placeholder="Buscar Cliente"
+                    type='text'
+                    placeholder='Buscar Cliente'
                     onChange={(e) => handleOnChange(e)}
                 />
             </Container>

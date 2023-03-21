@@ -1,7 +1,7 @@
-import axios from "axios";
-import { Drink } from "../interfaces/drink.interface";
-import { Pizza } from "../interfaces/pizza.interface";
-import { Snack } from "../interfaces/snack.interface";
+import axios from 'axios';
+import { Drink } from '../interfaces/drink.interface';
+import { Pizza } from '../interfaces/pizza.interface';
+import { Snack } from '../interfaces/snack.interface';
 
 const api = axios.create({
     baseURL: 'http://localhost:4400/'
