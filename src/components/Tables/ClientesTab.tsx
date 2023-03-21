@@ -3,15 +3,16 @@ import { Table } from "./Table"
 import { Cliente } from "../../interfaces/cliente.interface"
 import { useEffect, useState } from "react"
 import { getClients } from "../../api"
+import { Input } from "../Forms/Inputs"
 
 const ClientesTab = () => {
     const [clientes, setClientes] = useState<Array<Cliente>>()
 
+    const getListClientes = async() => {
+        const response = await getClients()
+        setClientes(response.data)
+    }
     useEffect(() => {
-        const getListClientes = async() => {
-            const response = await getClients()
-            setClientes(response.data)
-        }
         getListClientes()
     }, [])
 
@@ -19,16 +20,19 @@ const ClientesTab = () => {
         const searchWord = e.currentTarget.value
         if(clientes){
             const newListClientes = clientes.filter((cliente: Cliente) => 
-                cliente.nombre.toLowerCase().includes(searchWord.toLowerCase())
+                    cliente.nombre.toLowerCase().includes(searchWord.toLowerCase())
+                || cliente.direccion.toLowerCase().includes(searchWord.toLowerCase())
+                || cliente.referencia.toLowerCase().includes(searchWord.toLowerCase())
             )
             setClientes(newListClientes)
         }
+        if(searchWord.length === 0) getListClientes()
     }
 
     return(
         <Container>
             <Container style={{ padding: '30px 0' }}>
-                <input 
+                <Input 
                     type="text"
                     placeholder="Buscar Cliente"
                     onChange={(e) => handleOnChange(e)}

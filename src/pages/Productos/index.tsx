@@ -5,6 +5,7 @@ import SnackTab from '../../components/Tables/SnacksTab'
 import PizzaTab from '../../components/Tables/PizzasTab'
 import styled from 'styled-components'
 import DrinksTab from '../../components/Tables/DrinksTab'
+import NewProduct from '../../components/Forms/NewProduct'
 
 const ContainerTabs = styled(Container)({
     backgroundColor: 'antiquewhite',
@@ -14,24 +15,35 @@ const ContainerTabs = styled(Container)({
     gap: '16px',
 })
 
+const ContainerForm = styled(Container)({
+    width: '100%',
+    display: 'flex',
+    marginTop: '30px',
+    justifyContent: 'center'
+})
+
 const Productos = () => {
-    const [tabActive, setTabActive] = useState<string>('pizzas')
+    const [tabActive, setTabActive] = useState<'pizza' | 'snack' | 'drink'>('pizza')
     
     return(
         <Container>
             <ContainerTabs>
-                <MediumButton onClick={() => setTabActive('pizzas')}>Pizzas</MediumButton>
-                <MediumButton onClick={() => setTabActive('snacks')}>Snacks</MediumButton>
-                <MediumButton onClick={() => setTabActive('drinks')}>Drinks</MediumButton>
+                <MediumButton onClick={() => setTabActive('pizza')}>Pizzas</MediumButton>
+                <MediumButton onClick={() => setTabActive('snack')}>Snacks</MediumButton>
+                <MediumButton onClick={() => setTabActive('drink')}>Drinks</MediumButton>
             </ContainerTabs>
             <Container style={{ padding: '30px' }}>
                 {
-                    tabActive === 'pizzas' ? 
+                    tabActive === 'pizza' ? 
                         <PizzaTab />
-                    : tabActive === 'snacks' ?
+                    : tabActive === 'snack' ?
                         <SnackTab /> : <DrinksTab />
                 }
+                <ContainerForm>
+                    <NewProduct typeOfForm={tabActive} />
+                </ContainerForm>
             </Container>
+
         </Container>
     )
 }
