@@ -12,7 +12,7 @@ const Home = () => {
 
     return (
         <Container style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between', gap: '30px', padding: '30px' }}>
-            <Card>
+            <Card onClick={() => navigate('/nueva-venta')}>
                 <Cart size='large' />
                 <h1>Nueva Venta</h1>
             </Card>
