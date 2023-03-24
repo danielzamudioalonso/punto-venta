@@ -11,7 +11,8 @@ export const Table = styled('table')({
     boxShadow: '0 0 20px rgba(0, 0, 0, 0.15)',
     '& > thead > tr': {
         color: '#fff',
-        backgroundColor: '#009879'
+        backgroundColor: '#0d8fc8',
+        //borderBottom: 'solid 2px #000'
     },
     'th, td': {
         padding: '12px 15px'
@@ -23,6 +24,10 @@ export const Table = styled('table')({
         backgroundColor: '#f3f3f3'
     },
     '& > tbody > tr:last-of-type': {
-        borderBottom: '2px solid #009879'
+        borderBottom: '2px solid #0d8fc8'
+    },
+    '& > tbody > tr.select': {
+        color: '#fff',
+        backgroundColor: '#0bb0f8'
     }
 })

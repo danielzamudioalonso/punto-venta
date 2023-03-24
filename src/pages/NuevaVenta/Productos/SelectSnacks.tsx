@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { getSnacks } from "../../api"
-import { Container, ContainerSelectList } from "../../components/Card"
-import { Snack } from "../../interfaces/snack.interface"
-import { useSaleContext } from "./SaleContext"
+import { getSnacks } from "../../../api"
+import { Container, ContainerSelectList } from "../../../components/Card"
+import { Snack } from "../../../interfaces/snack.interface"
+import { useSaleContext } from "../SaleContext"
 
 const SelectSnacks = () => {
     const [listSnacks, setListSnacks] = useState<Array<Snack>>()

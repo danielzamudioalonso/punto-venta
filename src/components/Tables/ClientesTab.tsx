@@ -5,7 +5,12 @@ import { useEffect, useState } from 'react'
 import { getClients } from '../../api'
 import { Input } from '../Forms/Inputs'
 
-const ClientesTab = () => {
+type Props = {
+    nameSelect?: Cliente | undefined
+    onClick?: (cliente: Cliente) => void
+}
+
+const ClientesTab = ({ nameSelect, onClick }: Props) => {
     const [clientes, setClientes] = useState<Array<Cliente>>()
 
     const getListClientes = async() => {
@@ -50,10 +55,14 @@ const ClientesTab = () => {
                     {
                         clientes  &&
                             clientes.map((cliente: Cliente) => (
-                                <tr key={cliente.nombre}>
-                                    <th>{cliente.nombre}</th>
-                                    <th>{cliente.direccion}</th>
-                                    <th>{cliente.referencia}</th>
+                                <tr 
+                                    key={cliente.nombre} 
+                                    className={nameSelect && nameSelect.nombre === cliente.nombre ? 'select' : ''}
+                                    onClick={() => onClick && onClick(cliente)}
+                                >
+                                    <td>{cliente.nombre}</td>
+                                    <td>{cliente.direccion}</td>
+                                    <td>{cliente.referencia}</td>
                                 </tr>
                             ))
                     }
