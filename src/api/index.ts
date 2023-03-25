@@ -19,3 +19,7 @@ export const getDrinks = async() => {
 export const getClients = async() => {
     return await api.get('/clientes')
 }
+
+export const getIngredients = async() => {
+    return await api.get('/ingredients')
+}

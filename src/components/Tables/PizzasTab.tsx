@@ -1,5 +1,4 @@
 import { Container } from '../Card'
-//import Pizzas from '../../data/pizzas.json'
 import { Pizza } from '../../interfaces/pizza.interface'
 import { Table } from './Table'
 import { getPizzas } from '../../api'

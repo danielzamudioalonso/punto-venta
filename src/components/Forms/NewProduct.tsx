@@ -4,6 +4,7 @@ import { postDrink, postPizza, postSnack } from '../../api/BM'
 import { MediumButton } from '../../components/Buttons/Buttons'
 import { Container } from '../../components/Card'
 import { Drink } from '../../interfaces/drink.interface'
+import { Ingredient } from '../../interfaces/indegrient.interface'
 import { Pizza } from '../../interfaces/pizza.interface'
 import { Snack } from '../../interfaces/snack.interface'
 import { Input } from './Inputs'
@@ -16,7 +17,7 @@ const ContainerForm = styled(Container)({
 })
 
 type Props = {
-    typeOfForm: 'pizza' | 'snack' | 'drink'
+    typeOfForm: 'pizza' | 'snack' | 'drink' | 'ingredients'
 }
 
 const NewProduct = ({ typeOfForm }: Props) => {
@@ -24,6 +25,7 @@ const NewProduct = ({ typeOfForm }: Props) => {
     const [brand, setBrand] = useState<string>('')
     const [size, setSize] = useState<string>('')
     const [name, setName] = useState<string>('')
+    const [ingredients, setIngredients] = useState<Array<string>>([])
 
     const handleOnClick = async() => {
         if(typeOfForm === 'pizza'){
@@ -51,10 +53,18 @@ const NewProduct = ({ typeOfForm }: Props) => {
             const { status } = await postDrink(newDrink)
             console.log(status)
         }
+        if(typeOfForm === 'ingredients'){
+            const newIngredient: Ingredient = {
+                name,
+                ingredients
+            }
+            console.log(newIngredient)
+        }
         setPrice(0)
         setBrand('')
         setName('')
         setSize('')
+        setIngredients([])
     }
 
     const handleOnChangeSize = (e: React.FormEvent<HTMLInputElement>) => {
@@ -106,6 +116,15 @@ const NewProduct = ({ typeOfForm }: Props) => {
                         placeholder='Marca'
                         value={brand}
                         onChange={(e) => handleOnChangeBrand(e)}
+                    />
+            }
+            {
+                typeOfForm === 'ingredients' &&
+                    <Input 
+                        type='text'
+                        placeholder='Ingredientes'
+                        //value={brand}
+                        onChange={(e) => {}}
                     />
             }
             <Container style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
