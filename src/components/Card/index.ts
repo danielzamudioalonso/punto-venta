@@ -21,7 +21,7 @@ export const Card = styled(Container)(
 )
 
 export const ContainerSelectList = styled(Container)({
-    width: '30%',
+    width: '40%',
     border: '1px solid #000',
     '& > ul': {
         margin: '0',

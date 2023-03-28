@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { getIngredients } from "../../../api"
 import { Container, ContainerSelectList } from "../../../components/Card"
 import { Ingredient } from "../../../interfaces/indegrient.interface"
-import { useSaleContext } from "../SaleContext"
 
-const SelectIngredients = () => {
+type Props = {
+    ingredients: Array<Ingredient>
+    setIngredients: Dispatch<SetStateAction<Array<Ingredient>>>
+}
+
+const SelectIngredients = ({ ingredients, setIngredients }:Props) => {
     const [listIngredients, setListIngredients] = useState<Array<Ingredient>>()
-    const { ingredients, setIngredients } = useSaleContext()
 
     useEffect(() => {
         const getListIngredients = async() => {

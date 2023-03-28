@@ -1,21 +1,23 @@
 import { Container } from "../../../components/Card"
 import { Drink } from "../../../interfaces/drink.interface"
 import { Ingredient } from "../../../interfaces/indegrient.interface"
-import { Pizza } from "../../../interfaces/pizza.interface"
+import { Pizza, SalePizza } from "../../../interfaces/pizza.interface"
 import { Snack } from "../../../interfaces/snack.interface"
 import { useSaleContext } from "../SaleContext"
 
 const SummarySale = () => {
-    const { cliente, ingredients, pizzas, drinks, snacks, total } = useSaleContext()
+    const { cliente, ingredients, salePizzas, drinks, snacks, total } = useSaleContext()
 
     return(
         <Container>
             <h1>Resumen de Venta</h1>
             <Container>
                 <h3>Pizza</h3>
-                {
-                    pizzas && pizzas.map((pizza: Pizza) => (pizza.size + ' -- $' +pizza.price))
-                }
+                <Container style={{ display: 'flex', flexDirection: 'column' }}>
+                    {
+                        salePizzas && salePizzas.map((pizza: SalePizza) => (pizza.pizza.size + ' -- $' +pizza.pizza.price))
+                    }
+                </Container>
             </Container>
             <Container>
                 <h3>Ingrediente/s</h3>

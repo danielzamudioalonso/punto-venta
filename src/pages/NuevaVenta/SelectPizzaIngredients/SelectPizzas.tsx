@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { getPizzas } from "../../../api"
 import { Container, ContainerSelectList } from "../../../components/Card"
 import { Pizza } from "../../../interfaces/pizza.interface"
 import { useSaleContext } from "../SaleContext"
 
-const SelectPizzas = () => {
+type Props = {
+    pizza: Pizza | undefined
+    setPizza: Dispatch<SetStateAction<Pizza | undefined>>
+}
+
+const SelectPizzas = ({ pizza, setPizza }:Props) => {
     const [listPizzas, setListPizzas] = useState<Array<Pizza>>()
-    const { pizzas, setPizzas } = useSaleContext()
 
     useEffect(() => {
         const getListPizzas = async() => {
@@ -17,12 +21,12 @@ const SelectPizzas = () => {
     }, [])
 
     const handleOnClick = (select: Pizza) => {
-        if(pizzas.find((drink: Pizza) => drink.size === select.size)){
+        /*if(pizzas.find((drink: Pizza) => drink.size === select.size)){
             const filter = pizzas.filter((drink: Pizza) => drink.size !== select.size)
             setPizzas(filter)
             return
-        }
-        setPizzas([...pizzas, select])
+        }*/
+        setPizza(select)
     }
     
     return(
@@ -32,16 +36,16 @@ const SelectPizzas = () => {
             </Container>
             <ul>
                 {
-                    listPizzas?.map((pizza: Pizza) => (
+                    listPizzas?.map((pizzaList: Pizza) => (
                         <li
-                            key={pizza.size}
-                            onClick={() => handleOnClick(pizza)} 
+                            key={pizzaList.size}
+                            onClick={() => handleOnClick(pizzaList)} 
                             className={
-                                pizzas.find((pizzasSelect: Pizza) => pizzasSelect.size === pizza.size)
+                                pizzaList.size === pizza?.size
                                     ? 'Select' : ''
                             }
                         >
-                            {pizza.size}
+                            {pizzaList.size}
                         </li>   
                     ))
                 }

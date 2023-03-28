@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { Container } from '../../components/Card'
-import SelectPizzas from './Productos/SelectPizzas'
+import SelectPizzas from './SelectPizzaIngredients/SelectPizzas'
 import { ProviderSaleContext, useSaleContext } from './SaleContext'
-import SelectSnacks from './Productos/SelectSnacks'
-import SelectDrinks from './Productos/SelectDrinks'
+import SelectSnacks from './Extras/SelectSnacks'
+import SelectDrinks from './Extras/SelectDrinks'
 import SelectCliente from './SelectCliente'
-import Productos from './Productos'
+import Extras from './Extras'
 import { StepperStep } from '../../components/Stepper/Stepper'
 import styled from 'styled-components'
 import { StepperButton } from '../../components/Buttons/Buttons'
 import SummarySale from './SummarySale'
+import Pizza from './SelectPizzaIngredients'
 
 const ContainerStepper = styled(Container)({
     display: 'flex',
@@ -36,7 +37,8 @@ const NuevaVenta = () => {
 
     const Steps = [
         <h1></h1>,
-        <Productos />,
+        <Pizza />,
+        <Extras />,
         <SelectCliente />,
         <SummarySale />
     ]
@@ -45,9 +47,10 @@ const NuevaVenta = () => {
         <ProviderSaleContext>
             <Container style={{ padding: '30px' }}>
                 <ContainerStepper>
-                    <StepperStep className={step == 1 ? 'ready' : ''}>Productos</StepperStep>
-                    <StepperStep className={step == 2 ? 'ready' : ''}>Cliente</StepperStep>
-                    <StepperStep className={step == 3 ? 'ready' : ''}>Venta</StepperStep>
+                    <StepperStep className={step === 1 ? 'ready' : ''}>Pizza</StepperStep>
+                    <StepperStep className={step === 2 ? 'ready' : ''}>Extras</StepperStep>
+                    <StepperStep className={step === 3 ? 'ready' : ''}>Cliente</StepperStep>
+                    <StepperStep className={step === 4 ? 'ready' : ''}>Venta</StepperStep>
                 </ContainerStepper>
 
                 <ContainerContent>

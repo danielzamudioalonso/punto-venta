@@ -2,14 +2,18 @@ import { createContext, Dispatch, SetStateAction, useContext, useEffect, useStat
 import { Cliente } from "../../interfaces/cliente.interface"
 import { Drink } from "../../interfaces/drink.interface"
 import { Ingredient } from "../../interfaces/indegrient.interface"
-import { Pizza } from "../../interfaces/pizza.interface"
+import { Pizza, SalePizza } from "../../interfaces/pizza.interface"
 import { Snack } from "../../interfaces/snack.interface"
 
 interface saleContext {
-    pizzas: Array<Pizza>
-    setPizzas: Dispatch<SetStateAction<Array<Pizza>>>
+    pizza: Pizza | undefined
+    setPizza: Dispatch<SetStateAction<Pizza | undefined>>
     ingredients: Array<Ingredient>
     setIngredients: Dispatch<SetStateAction<Array<Ingredient>>>
+
+    salePizzas: Array<SalePizza>
+    setSalePizzas: Dispatch<SetStateAction<Array<SalePizza>>>
+
     drinks: Array<Drink>
     setDrinks: Dispatch<SetStateAction<Array<Drink>>>
     snacks: Array<Snack>
@@ -21,10 +25,14 @@ interface saleContext {
 }
 
 export const createSaleContext = createContext<saleContext>({
-    pizzas: [],
-    setPizzas: () => [],
+    pizza: undefined,
+    setPizza: () => [],
     ingredients: [],
     setIngredients: () => [],
+
+    salePizzas: [],
+    setSalePizzas: () => [],
+
     drinks: [],
     setDrinks: () => [],
     snacks: [],
@@ -36,8 +44,11 @@ export const createSaleContext = createContext<saleContext>({
 })
 
 export const ProviderSaleContext = ({ children }: any) => {
-    const [pizzas, setPizzas] = useState<Array<Pizza>>([])
+    const [pizza, setPizza] = useState<Pizza>()
     const [drinks, setDrinks] = useState<Array<Drink>>([])
+
+    const [salePizzas, setSalePizzas] = useState<Array<SalePizza>>([])
+
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([])
     const [snacks, setSnacks] = useState<Array<Snack>>([])
     const [cliente, setCliente] = useState<Cliente>()
@@ -46,9 +57,9 @@ export const ProviderSaleContext = ({ children }: any) => {
     
     useEffect(() => {
         let totalPizzas = 0
-        if(pizzas.length > 0){
-            pizzas.map((pizza: Pizza) => 
-                totalPizzas = totalPizzas + pizza.price
+        if(salePizzas.length > 0){
+            salePizzas.map((pizza: SalePizza) => 
+                totalPizzas = totalPizzas + pizza.pizza.price
             )
         }
         setTotal(totalPizzas)
@@ -75,13 +86,17 @@ export const ProviderSaleContext = ({ children }: any) => {
         totalPizzas = 0
         totalDrinks = 0
         totalSnacks = 0
-    }, [pizzas, drinks, snacks])
+    }, [salePizzas, drinks, snacks])
 
     const values: saleContext = {
-        pizzas,
-        setPizzas,
+        pizza,
+        setPizza,
         ingredients,
         setIngredients,
+
+        salePizzas,
+        setSalePizzas,
+
         drinks,
         setDrinks,
         snacks,
