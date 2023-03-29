@@ -4,7 +4,7 @@ import { Ingredient } from "../../../interfaces/indegrient.interface"
 import { Pizza } from "../../../interfaces/pizza.interface"
 
 const CardInfo = styled(Container)({
-    width: '350px',
+    width: '250px',
     backgroundColor: '#0bb0f8',
     padding: '30px 0',
     borderRadius: '30px',

@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { Container } from '../../components/Card'
-import SelectPizzas from './SelectPizzaIngredients/SelectPizzas'
 import { ProviderSaleContext, useSaleContext } from './SaleContext'
-import SelectSnacks from './Extras/SelectSnacks'
-import SelectDrinks from './Extras/SelectDrinks'
 import SelectCliente from './SelectCliente'
 import Extras from './Extras'
 import { StepperStep } from '../../components/Stepper/Stepper'
@@ -31,9 +28,6 @@ const ContainerButtons = styled(Container)({
 
 const NuevaVenta = () => {
     const [step, setStep] = useState<number>(1)
-    const [readyPizza, setReadyPizza] = useState<boolean>(true)
-    const [readyCliente, setReadyCliente] = useState<boolean>(false)
-    const [readyVenta, setReadyVenta] = useState<boolean>(false)
 
     const Steps = [
         <h1></h1>,
@@ -63,8 +57,15 @@ const NuevaVenta = () => {
                     <StepperButton onClick={() => setStep(step - 1)} disabled={step == 1 && true}>
                         Atras
                     </StepperButton>
-                    <StepperButton onClick={() => setStep(step + 1)}>
-                        Siguiente
+                    <StepperButton onClick={() => {
+                        step === 4 ? 
+                            console.log('comprado')
+                        :
+                            setStep(step + 1)
+                    }}>
+                        {
+                            step === 4 ? 'Finalizar' : 'Siguiente'
+                        }
                     </StepperButton>
                 </ContainerButtons>
             </Container>
@@ -73,7 +74,3 @@ const NuevaVenta = () => {
 }
 
 export default NuevaVenta
-            /*<Productos />
-            <Container>
-                <SelectCliente />
-            </Container>*/

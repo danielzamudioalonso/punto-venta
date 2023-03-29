@@ -31,3 +31,22 @@ export const Table = styled('table')({
         backgroundColor: '#0bb0f8'
     }
 })
+
+export const SummaryTable = styled('table')({
+    width: '100%',
+    textAlign: 'center',
+    'th, td': {
+        borderBottom: '1px solid #ddd',
+        padding: '7px'
+    },
+    '& > tbody > tr > td.price': {
+        textAlign: 'right'
+    },
+    '& > tbody > tr > td.ingredients': {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    '& > tbody > tr > td.ingredients > td': {
+        border: 'none'
+    }
+})
