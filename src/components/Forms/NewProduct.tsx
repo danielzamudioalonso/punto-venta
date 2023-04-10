@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { postDrink, postPizza, postSnack } from '../../api/BM'
+import { postDrink, postIngredient, postPizza, postSnack } from '../../api/BM'
 import { MediumButton } from '../../components/Buttons/Buttons'
 import { Container } from '../../components/Card'
 import { Drink } from '../../interfaces/drink.interface'
@@ -14,6 +14,15 @@ const ContainerForm = styled(Container)({
     flexDirection: 'column',
     width: '500px',
     gap: '16px'
+})
+
+const ContainerInputIngredients = styled(Container)({
+    display: 'flex',
+    flexDirection: 'column',
+    '& > small': {
+        padding: '10px 20px',
+        color: 'gray'
+    }
 })
 
 type Props = {
@@ -58,7 +67,8 @@ const NewProduct = ({ typeOfForm }: Props) => {
                 name,
                 ingredients
             }
-            console.log(newIngredient)
+            const { status } = await postIngredient(newIngredient)
+            console.log(status)
         }
         setPrice(0)
         setBrand('')
@@ -83,6 +93,11 @@ const NewProduct = ({ typeOfForm }: Props) => {
         setPrice(e.target.valueAsNumber)
     }
 
+    const handleOnChangeIngredients = (e: React.FormEvent<HTMLInputElement>) => {
+        const ingredients = e.currentTarget.value
+        setIngredients(ingredients.split(','))
+    }
+
     return(
         <ContainerForm>
             {
@@ -95,7 +110,7 @@ const NewProduct = ({ typeOfForm }: Props) => {
                     />
             }
             {
-                (typeOfForm === 'snack' || typeOfForm === 'drink') &&
+                (typeOfForm === 'snack' || typeOfForm === 'drink' || typeOfForm === 'ingredients') &&
                     <Input 
                         type='text'
                         placeholder='Nombre'
@@ -103,12 +118,15 @@ const NewProduct = ({ typeOfForm }: Props) => {
                         onChange={(e) => handleOnChangeName(e)}
                     />
             }
-            <Input 
-                type='number'
-                placeholder='Precio'
-                value={price}
-                onChange={(e) => handleOnChangePrecio(e)}
-            />
+            {
+                typeOfForm !== 'ingredients' &&
+                    <Input 
+                        type='number'
+                        placeholder='Precio'
+                        value={price}
+                        onChange={(e) => handleOnChangePrecio(e)}
+                    />
+            }
             {
                 typeOfForm === 'drink' &&
                     <Input 
@@ -120,12 +138,15 @@ const NewProduct = ({ typeOfForm }: Props) => {
             }
             {
                 typeOfForm === 'ingredients' &&
-                    <Input 
-                        type='text'
-                        placeholder='Ingredientes'
-                        //value={brand}
-                        onChange={(e) => {}}
-                    />
+                    <ContainerInputIngredients>
+                        <Input 
+                            type='text'
+                            placeholder='Ingredientes'
+                            value={ingredients}
+                            onChange={(e) => handleOnChangeIngredients(e)}
+                        />
+                        <small>Separar cada ingrediente por comas</small>
+                    </ContainerInputIngredients>
             }
             <Container style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                 <MediumButton onClick={handleOnClick}>
