@@ -26,3 +26,11 @@ export const StepperButton = styled(BackButton)({
     borderRadius: '12px',
     border: 'none',
 })
+
+export const FormButton = styled('button')({
+    padding: '7px 12px',
+    backgroundColor: '#0d8fc8',
+    border: 'none',
+    borderRadius: '5px',
+    color: 'white'
+})

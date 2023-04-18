@@ -1,5 +1,6 @@
-import { Dispatch, ReactNode, SetStateAction, useEffect } from 'react'
+import { ReactNode, SetStateAction, useEffect } from 'react'
 import styled from 'styled-components'
+import { FormButton } from '../Buttons/Buttons'
 
 const ContainerModal = styled('div')({
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -19,12 +20,19 @@ const ContentModal = styled('div')({
 })
 
 const ContentChildren = styled('div')({
-    padding: '20px',
+    padding: '30px 20px',
 })
 
 const HeaderModal = styled('div')({
     padding: '12px 20px',
     borderBottom: '1px solid gray'
+})
+
+const ButtonsModal = styled('div')({
+    display: 'flex',
+    justifyContent: 'end',
+    padding: '10px 20px 20px',
+    gap: '12px'
 })
 
 type Props = {
@@ -36,7 +44,7 @@ type Props = {
 const Modal = ({ handleOnClose, title, children }:Props) => {
 
     return(
-        <ContainerModal id='modal' onClick={handleOnClose}>
+        <ContainerModal id='modal' >
             <ContentModal>
                 <HeaderModal>
                     { title }
@@ -44,6 +52,10 @@ const Modal = ({ handleOnClose, title, children }:Props) => {
                 <ContentChildren>
                     { children }
                 </ContentChildren>
+                <ButtonsModal>
+                    <FormButton style={{ backgroundColor: 'gray' }}>Cancelar</FormButton>
+                    <FormButton>Aceptar</FormButton>
+                </ButtonsModal>
             </ContentModal>
         </ContainerModal>
     )

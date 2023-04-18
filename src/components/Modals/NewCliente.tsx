@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import Modal from '../Modal'
 import { Container } from '../Card'
-import { InputForm, TextArea, ContainerInputForm } from '../Forms/Inputs'
+import { InputForm, TextArea, ContainerInputForm, ContainerTextarea } from '../Forms/Inputs'
 
 type Props = {
     open: boolean
@@ -22,16 +22,20 @@ const ModalNewClient = ({ open, setOpenModal }:Props) => {
                                 <label>Nombre</label>
                                 <InputForm 
                                     type='text'
-                                    
                                 />
                             </ContainerInputForm>
-                            <TextArea 
-                                placeholder='Dirección'
-                            />
-                            <InputForm 
-                                type='text'
-                                placeholder='Referencia'
-                            />
+                            <ContainerTextarea>
+                                <label>Dirección</label>
+                                <TextArea 
+                                    rows={4}
+                                />
+                            </ContainerTextarea>
+                            <ContainerInputForm>
+                                <label>Referencia</label>
+                                <InputForm 
+                                    type='text'
+                                />
+                            </ContainerInputForm>
                         </Container>
                     </Modal>
             }
