@@ -153,10 +153,6 @@ const NewProduct = ({ typeOfForm }: Props) => {
                     Guardar
                 </MediumButton>
             </Container>
-
-            <Container style={{ marginTop: '30px' }}>
-                {size + ' - ' +price}
-            </Container>
         </ContainerForm>
     )
 }

@@ -4,6 +4,8 @@ import { Cliente } from '../../interfaces/cliente.interface'
 import { useEffect, useState } from 'react'
 import { getClients } from '../../api'
 import { Input } from '../Forms/Inputs'
+import { MediumButton } from '../Buttons/Buttons'
+import ModalNewClient from '../Modals/NewCliente'
 
 type Props = {
     nameSelect?: Cliente | undefined
@@ -12,6 +14,7 @@ type Props = {
 
 const ClientesTab = ({ nameSelect, onClick }: Props) => {
     const [clientes, setClientes] = useState<Array<Cliente>>()
+    const [openModal, setOpenModal] = useState<boolean>(false)
 
     const getListClientes = async() => {
         const response = await getClients()
@@ -34,14 +37,18 @@ const ClientesTab = ({ nameSelect, onClick }: Props) => {
         if(searchWord.length === 0) getListClientes()
     }
 
+    
+
     return(
         <Container>
-            <Container style={{ padding: '30px 0' }}>
+            <ModalNewClient open={openModal} setOpenModal={setOpenModal} />
+            <Container style={{ padding: '30px 0', display: 'flex', justifyContent: 'space-between' }}>
                 <Input 
                     type='text'
                     placeholder='Buscar Cliente'
                     onChange={(e) => handleOnChange(e)}
                 />
+                <MediumButton onClick={() => setOpenModal(true)}>Nuevo Cliente</MediumButton>
             </Container>
             <Table>
                 <thead>
